@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "mcp-curl-stdio": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/dist/index.js"]
+    }
+    // "mcp-curl-streamable-http": {
+    //   "type": "http",
+    //   "url": "http://localhost:3088/mcp"
+    // },
+  }
+}
