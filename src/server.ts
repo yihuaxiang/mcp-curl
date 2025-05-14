@@ -8,27 +8,24 @@ export function createServer(): McpServer {
   });
 
   server.tool(
-    "get_weather",
-    "Get weather info for a given city.",
+    "curl",
+    "get page content from a given url",
     {
-      city: z.string().describe("city name"),
+      url: z.string().describe("url to get page content from"),
     },
-    async ({ city }) => {
-      if (!city) {
+    async ({ url }) => {
+      if (!url) {
         throw new Error("city name is required.");
       }
 
-      const weather = {
-        city: city,
-        temperature: Math.floor(Math.random() * 30),
-        condition: "Sunny",
-      };
+      const response = await fetch(url);
+      const content = await response.text();
 
       return {
         content: [
           {
             type: "text",
-            text: JSON.stringify(weather, null, 2),
+            text: content,
           },
         ],
       };
